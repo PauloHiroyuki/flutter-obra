@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:obra/models/pessoa.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
+import 'package:obra/tools/LoginTools.dart';
 
 class ItemLogin extends StatelessWidget {
   final Pessoa _pessoa;
@@ -33,8 +33,8 @@ class ItemLogin extends StatelessWidget {
     return AssetImage('assets/images/sem_foto.png');
   }
 
-  void _logar(BuildContext context, Pessoa pessoa){
-    debugPrint(pessoa.toString());
-//    SharedPreferences.getInstance().then((prefs) => prefs.setString("usuario", pessoa.id));
+  void _logar(BuildContext context, Pessoa pessoa) async{
+    LoginTools.setUsuario(pessoa.id);
+    Navigator.popAndPushNamed(context, '/');
   }
 }

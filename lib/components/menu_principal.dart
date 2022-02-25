@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../screens/projeto/lista_projetos.dart';
+import 'package:obra/tools/LoginTools.dart';
 
 class MenuPrincipal extends StatelessWidget {
 
@@ -31,15 +30,16 @@ class MenuPrincipal extends StatelessWidget {
   }
 
 
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index) async {
     if (index == 0) {
-      Navigator.pushNamed(_context!, '/');
+      Navigator.popAndPushNamed(_context!, '/home');
     }
     if (index == 1) {
-      Navigator.pushNamed(_context!, '/login');
+      LoginTools.removeUsuario();
+      Navigator.popAndPushNamed(_context!, '/');
     }
     if (index == 2) {
-      Navigator.pushNamed(_context!, '/projetos');
+      Navigator.popAndPushNamed(_context!, '/projetos');
     }
   }
 }

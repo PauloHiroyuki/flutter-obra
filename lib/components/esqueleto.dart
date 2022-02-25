@@ -4,14 +4,19 @@ import 'package:obra/components/centered_message.dart';
 import 'package:obra/components/menu_principal.dart';
 import 'package:obra/components/progress.dart';
 
-
 class Esqueleto<T> extends StatelessWidget {
   final Future<T> pesquisa;
   final String titulo;
   final Function builder;
-  final Widget bottomNavigationBar;
+  final Widget menu;
+  final bool showMenu;
 
-  Esqueleto({required this.pesquisa, required this.titulo, required this.builder, required this.bottomNavigationBar});
+  Esqueleto(
+      {required this.pesquisa,
+      required this.titulo,
+      required this.builder,
+      required this.menu,
+      this.showMenu = true});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +43,10 @@ class Esqueleto<T> extends StatelessWidget {
             }
             return CenteredMessage('Erro desconhecido');
           }),
-      bottomNavigationBar: bottomNavigationBar,
+      bottomNavigationBar: Visibility(
+        child: menu,
+        visible: showMenu,
+      ),
     );
   }
 }

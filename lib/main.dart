@@ -21,10 +21,10 @@ class ObraApp extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      initialRoute: '/projetos',
+      initialRoute: '/',
       routes: {
-        '/': (context) => Home(),
         '/login': (context) => Login(),
+        '/': (context) => Home(),
         '/projetos': (context) => ListaProjetos(),
         '/projetos/form': (context) => FormularioProjeto(),
       },

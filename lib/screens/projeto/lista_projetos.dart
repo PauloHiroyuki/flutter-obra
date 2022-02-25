@@ -15,7 +15,7 @@ class ListaProjetos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Esqueleto<List<Projeto>>(
-      bottomNavigationBar: MenuPrincipal(),
+      menu: MenuPrincipal(),
       pesquisa: _webClient.ListarTodos(),
       titulo: 'titulo',
       builder: (context, projetos) {
