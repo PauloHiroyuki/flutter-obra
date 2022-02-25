@@ -1,84 +1,59 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:obra/components/centered_message.dart';
+import 'package:obra/components/esqueleto.dart';
 import 'package:obra/components/menu_principal.dart';
+import 'package:obra/components/progress.dart';
+import 'package:obra/http/webclients/projeto_webclient.dart';
 import 'package:obra/models/projeto.dart';
 
 const _tituloAppBar = 'Projetos';
 
-class ListaProjetos extends StatefulWidget {
-  final List<Projeto> _projetos = [
-    Projeto(
-      '1',
-      'AR 13',
-      'https://images.adsttc.com/media/images/5f90/e509/63c0/1779/0100/010e/slideshow/3.jpg?1603331288',
-      'ativo',
-    ),
-    Projeto(
-      '2',
-      'Qd 2',
-      'https://upload.wikimedia.org/wikipedia/commons/c/c9/Ranch_style_home_in_Salinas%2C_California.JPG',
-      'ativo',
-    ),
-  ];
+class ListaProjetos extends StatelessWidget {
+  final ProjetoWebClient _webClient = ProjetoWebClient();
 
-  @override
-  State<StatefulWidget> createState() {
-    return ListaProjetosState();
-  }
-}
-
-class ListaProjetosState extends State<ListaProjetos> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(_tituloAppBar),
-      ),
-      body: DataTable(
-        columns: const <DataColumn>[
-          DataColumn(
-            label: Text(
-              'Nome',
-              style: TextStyle(fontStyle: FontStyle.italic),
-            ),
-          ),
-          DataColumn(
-            label: Text(
-              'Situação',
-              style: TextStyle(fontStyle: FontStyle.italic),
-            ),
-          ),
-        ],
-        rows: const <DataRow>[
-          DataRow(
-            cells: <DataCell>[
-              DataCell(Text('Sarah')),
-              DataCell(Text('19')),
-            ],
-          ),
-          DataRow(
-            cells: <DataCell>[
-              DataCell(Text('Janine')),
-              DataCell(Text('43')),
-            ],
-          ),
-          DataRow(
-            cells: <DataCell>[
-              DataCell(Text('William')),
-              DataCell(Text('27')),
-            ],
-          ),
-        ],
-      ),
+    return Esqueleto<List<Projeto>>(
       bottomNavigationBar: MenuPrincipal(),
+      pesquisa: _webClient.ListarTodos(),
+      titulo: 'titulo',
+      builder: (context, projetos) {
+        debugPrint(projetos.toString());
+        return ListView.builder(
+          itemBuilder: (context, index) {
+            final Projeto projeto = projetos[index];
+            return Card(
+              child: ListTile(
+                leading: Image(image: _teste(projeto)),
+                title: Text(
+                  projeto.nome,
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subtitle: Text(
+                  projeto.situacao == null ? '' : projeto.situacao!,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
+              ),
+            );
+          },
+          itemCount: projetos.length,
+        );
+      },
     );
   }
 
-  void _atualiza(Projeto projeto) {
-    if (projeto != null) {
-      setState(() {
-        widget._projetos.add(projeto);
-      });
+  ImageProvider _teste(Projeto projeto) {
+    if (projeto.urlImagem == null ) {
+      return AssetImage('assets/images/sem_foto.png');
     }
+    return NetworkImage(projeto.urlImagem!);
   }
 }
+
+

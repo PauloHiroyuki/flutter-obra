@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:obra/components/esqueleto.dart';
 import 'package:obra/http/webclients/pessoa_webclient.dart';
 import 'package:obra/models/pessoa.dart';
-import 'package:obra/screens/projeto/item_projeto.dart';
 import 'package:obra/screens/login/item_login.dart';
 
 const _tituloAppBar = 'Login';
@@ -14,6 +13,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Esqueleto<List<Pessoa>>(
+        bottomNavigationBar: Text(''),
         pesquisa: _webClient.findAll(),
         titulo: _tituloAppBar,
         builder: (context, pessoas) {

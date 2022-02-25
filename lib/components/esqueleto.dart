@@ -9,9 +9,9 @@ class Esqueleto<T> extends StatelessWidget {
   final Future<T> pesquisa;
   final String titulo;
   final Function builder;
-  final Widget? bottomNavigationBar;
+  final Widget bottomNavigationBar;
 
-  Esqueleto({required this.pesquisa, required this.titulo, required this.builder, this.bottomNavigationBar});
+  Esqueleto({required this.pesquisa, required this.titulo, required this.builder, required this.bottomNavigationBar});
 
   @override
   Widget build(BuildContext context) {

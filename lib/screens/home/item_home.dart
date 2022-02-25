@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:obra/models/projeto.dart';
 
-class ItemProjeto extends StatelessWidget {
+class ItemHome extends StatelessWidget {
   final Projeto _projeto;
 
-  ItemProjeto(this._projeto);
+  ItemHome(this._projeto);
 
   @override
   Widget build(BuildContext context) {
