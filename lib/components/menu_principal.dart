@@ -32,11 +32,11 @@ class MenuPrincipal extends StatelessWidget {
 
   void _onItemTapped(int index) async {
     if (index == 0) {
-      Navigator.popAndPushNamed(_context!, '/home');
+      Navigator.popAndPushNamed(_context!, '/');
     }
     if (index == 1) {
       LoginTools.removeUsuario();
-      Navigator.popAndPushNamed(_context!, '/');
+      Navigator.popAndPushNamed(_context!, '/login');
     }
     if (index == 2) {
       Navigator.popAndPushNamed(_context!, '/projetos');

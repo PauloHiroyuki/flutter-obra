@@ -34,7 +34,7 @@ class Home extends StatelessWidget {
   Future<String?> _getLogin(context) async {
     final usuario = await LoginTools.getUsuario();
     if (usuario == null) {
-      Navigator.pushNamed(context, '/login');
+      Navigator.popAndPushNamed(context, '/login');
     }
 
     return usuario;

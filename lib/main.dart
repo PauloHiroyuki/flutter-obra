@@ -14,8 +14,7 @@ class ObraApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        //primaryColor: Colors.green[900],
-        primaryColor: Colors.red[900],
+        primaryColor: Colors.green[900],
         buttonTheme: ButtonThemeData(
           buttonColor: Colors.blueAccent[700],
           textTheme: ButtonTextTheme.primary,
@@ -23,11 +22,12 @@ class ObraApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/login': (context) => Login(),
         '/': (context) => Home(),
+        '/login': (context) => Login(),
         '/projetos': (context) => ListaProjetos(),
         '/projetos/form': (context) => FormularioProjeto(),
       },
+
     );
   }
 }
