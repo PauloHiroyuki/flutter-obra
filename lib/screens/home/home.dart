@@ -13,6 +13,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _getLogin(context);
     return Esqueleto<List<Projeto>>(
         menu: MenuPrincipal(),
         pesquisa: _webClient.ListarAtivos(),
